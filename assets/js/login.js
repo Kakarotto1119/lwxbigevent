@@ -32,21 +32,23 @@ $(function() {
 
     //监听注册表单的提交事件
     $('#form_reg').on('submit', function(e) {
+            // console.log(e);
             //1.阻止默认的表单行为
             e.preventDefault()
                 //发起ajax的post请求
             var data = {
-                username: $('#form-reg [name=username]').val(),
-                password: $('#form-reg [name=password]').val()
+                username: $('#form_reg [name=username]').val(),
+                password: $('#form_reg [name=password]').val()
             }
             $.post('/api/reguser', data, function(res) {
+                // console.log(res);
                 if (res.status !== 0) {
-                    return console.log(res.message);
-                    // return layer.msg(res.message)
+                    // return console.log(res.message);
+                    return layer.msg(res.message)
                 }
-                console.log('注册成功！');
-                // layer.msg('注册成功，请登录！')
-                //模拟人的点击行为
+                // console.log('注册成功！');
+                layer.msg('注册成功，请登录！')
+                    //模拟人的点击行为
                 $('#link_login').click()
             })
         })
